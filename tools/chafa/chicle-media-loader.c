@@ -41,6 +41,7 @@
 #include "chicle-webp-loader.h"
 #include "chicle-avif-loader.h"
 #include "chicle-jxl-loader.h"
+#include "chicle-pgm-loader.h"
 
 typedef enum
 {
@@ -54,6 +55,7 @@ typedef enum
     LOADER_TYPE_AVIF,
     LOADER_TYPE_SVG,
     LOADER_TYPE_JXL,
+    LOADER_TYPE_PGM,
 
     LOADER_TYPE_LAST
 }
@@ -122,6 +124,18 @@ loader_vtable [LOADER_TYPE_LAST] =
         (gboolean (*)(gpointer)) chicle_qoi_loader_goto_next_frame,
         (gconstpointer (*) (gpointer, gpointer, gpointer, gpointer, gpointer)) chicle_qoi_loader_get_frame_data,
         (gint (*) (gpointer)) chicle_qoi_loader_get_frame_delay
+    },
+    [LOADER_TYPE_PGM] =
+    {
+        "PGM",
+        (void (*)(void)) chicle_pgm_loader_new_from_mapping,
+        (gpointer (*)(gconstpointer)) NULL,
+        (void (*)(gpointer)) chicle_pgm_loader_destroy,
+        (gboolean (*)(gpointer)) chicle_pgm_loader_get_is_animation,
+        (void (*)(gpointer)) chicle_pgm_loader_goto_first_frame,
+        (gboolean (*)(gpointer)) chicle_pgm_loader_goto_next_frame,
+        (gconstpointer (*) (gpointer, gpointer, gpointer, gpointer, gpointer)) chicle_pgm_loader_get_frame_data,
+        (gint (*) (gpointer)) chicle_pgm_loader_get_frame_delay
     },
 #ifdef HAVE_JPEG
     [LOADER_TYPE_JPEG] =

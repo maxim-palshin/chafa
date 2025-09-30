@@ -45,7 +45,9 @@ chafa_SOURCES = \
 	chicle-util.c \
 	chicle-util.h \
 	chicle-xwd-loader.c \
-	chicle-xwd-loader.h
+	chicle-xwd-loader.h \
+	chicle-pgm-loader.c \
+	chicle-pgm-loader.h
 
 if HAVE_AVIF
 chafa_SOURCES += \
